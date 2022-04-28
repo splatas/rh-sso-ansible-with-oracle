@@ -75,7 +75,7 @@ infinispan_use_ssl: False
 infinispan_trust_store_path: /etc/pki/java/cacerts
 infinispan_trust_store_password: changeit
 
-### database backend engine: values [ 'postgres', 'mariadb' ]
+### database backend engine: values [ 'postgres', 'mariadb', 'oracle' ]
 keycloak_jdbc_engine: postgres
 ### database backend credentials
 keycloak_db_user: keycloak-user
@@ -90,6 +90,10 @@ keycloak_default_jdbc:
   mariadb:
     url: 'jdbc:mariadb://localhost:3306/keycloak'
     version: 2.7.4
+  oralce:
+    url: jdbc:oracle:thin:@192.168.1.37:1521/XE
+    version: 7
+
 
 # Actions Cli variables  
 oracle_xa_driver: oracle.jdbc.xa.client.OracleXADataSource

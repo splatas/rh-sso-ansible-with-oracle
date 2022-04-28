@@ -169,8 +169,7 @@
 
 - name: "DEBBUG"
   ansible.builtin.debug:
-    msg: System {{ keycloak_jdbc_engine }} has gateway {{ ansible_default_ipv4.gateway }}
-  when: keycloak_jdbc_engine != "oracle"
+    msg: System {{ keycloak_jdbc_engine }} has gateway {{ ansible_default_ipv4.gateway }} variable igual {{ keycloak_jdbc[keycloak_jdbc_engine].enabled }}
   
 # driver and configuration
 - name: "Install {{ keycloak_jdbc_engine }} driver"
@@ -195,7 +194,7 @@
     group: "{{ keycloak_service_group }}"
     mode: 0755
   register: jdbc7_oracle
-  when: keycloak_jdbc[keycloak_jdbc_engine].enabled and keycloak_jdbc[keycloak_jdbc_engine] == "oracle"
+  when: keycloak_jdbc[keycloak_jdbc_engine].enabled and keycloak_jdbc_engine == "oracle"
 
 # Template the actions cli to override variables
 - name: Replace the variables in the the actions.cli file
@@ -208,7 +207,7 @@
     src: "{{ local_path.stat.path }}/extensions/actions.cli"
     dest: "{{ keycloak_jboss_home }}/extensions"
   register: actions_cli
-  when: keycloak_jdbc[keycloak_jdbc_engine].enabled and keycloak_jdbc[keycloak_jdbc_engine] == "oracle"
+  when: keycloak_jdbc[keycloak_jdbc_engine].enabled and keycloak_jdbc_engine == "oracle"
 
 # Oracle JDBC using Jboss Cli installation
 - name: "Execute Actions CLI in order to add Oracle JDBC"
@@ -217,7 +216,7 @@
   become: yes
   changed_when: false
   register: cli_result
-  when: keycloak_jdbc[keycloak_jdbc_engine].enabled and keycloak_jdbc[keycloak_jdbc_engine] == "oracle"
+  when: keycloak_jdbc[keycloak_jdbc_engine].enabled and keycloak_jdbc_engine == "oracle"
 
 # Deploy step
 - name: "Deploy {{ keycloak.service_name }} config to {{ keycloak_config_path_to_standalone_xml }}"
