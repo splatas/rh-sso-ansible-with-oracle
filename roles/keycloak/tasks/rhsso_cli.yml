@@ -1,0 +1,32 @@
+---
+- name: Ensure required params for CLI have been provided
+  ansible.builtin.assert:
+    that:
+      - query is defined
+    fail_msg: "Missing required parameters to execute CLI."
+    quiet: true
+
+- name: "Execute CLI query: {{ query }}"
+  ansible.builtin.command: >
+    {{ keycloak.cli_path }} --connect --command='{{ query }}' --controller={{ keycloak_host }}:{{ keycloak_management_http_port }}
+  changed_when: false
+  register: cli_result
+
+  # Copy Oracle JDBC and actions.cli files
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: "/home/nacho/.ansible/collections/ansible_collections/middleware_automation/keycloak/extensions"
+    dest: "/opt/keycloak/rh-sso-7.5"
+    owner: "{{ keycloak_service_user }}"
+    group: "{{ keycloak_service_group }}"
+    mode: 0750
+  register: jdbc7_oracle
+
+
+# Oracle JDBC using Jboss Cli installation
+- name: "Execute Actions CLI in order to add Oracle JDBC"
+  ansible.builtin.command: >
+     {{ keycloak.cli_path }} --connect --file='/opt/keycloak/rh-sso-7.5/extensions/actions.cli'
+  become: yes
+  changed_when: false
+  register: cli_result

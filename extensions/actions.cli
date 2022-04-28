@@ -1,0 +1,70 @@
+
+#!/bin/bash
+
+embed-server --std-out=echo --server-config=keycloak.xml
+
+batch
+
+module add --name={{ oracle_eap_module }} --resources={{ oracle_jar }} --dependencies=javax.api,javax.resource.api
+
+/subsystem=datasources/jdbc-driver={{ oracle_driver_name }}:add( \
+    driver-name={{ oracle_driver_name }}, \
+    driver-module-name={{ oracle_eap_module }}, \
+    driver-xa-datasource-class-name={{ oracle_xa_driver }} \
+)
+
+/subsystem=datasources/data-source=KeycloakDS:remove()
+
+/subsystem=datasources/data-source=KeycloakDS:add( \
+    jndi-name=java:jboss/datasources/KeycloakDS, \
+    enabled=true, \
+    use-java-context=true, \
+    connection-url={{ oracle_jdbc_url }}, \
+    driver-name={{ oracle_driver_name }}, \
+    user-name={{ oracle_username }}, \
+    password={{ oracle_password }} \
+)
+
+run-batch
+
+quit
+
+# #!/bin/bash
+
+
+
+# ## admin cli commands to edit the configuration
+
+# embed-server --std-out=echo  --server-config=keycloak.xml
+
+# batch
+
+
+# ## Add Oracle driver
+
+# module add --name=com.oracle --resources=/opt/keycloak/rh-sso-7.5/extensions/ojdbc7.jar --dependencies=javax.api,javax.resource.api
+
+# /subsystem=datasources/jdbc-driver=oracle:add(driver-name=oracle,driver-module-name=com.oracle,driver-xa-datasource-class-name=oracle.jdbc.xa.client.OracleXADataSource)
+
+# /subsystem=datasources/data-source=KeycloakDS:remove()
+
+# /subsystem=datasources/data-source=KeycloakDS:add(jndi-name=java:jboss/datasources/KeycloakDS,enabled=true,use-java-context=true,connection-url="jdbc:oracle:thin:@//192.168.1.37:1521/XE",driver-name=oracle,user-name=rhssolab,password=galicia2019
+
+
+# ## Add truststore
+
+# #/subsystem=keycloak-server/spi=truststore:add()
+
+# #/subsystem=keycloak-server/spi=truststore/provider=file:add(enabled=true)
+
+# #/subsystem=keycloak-server/spi=truststore/provider=file/:map-put(name=properties,key=file, value="${env.SSO_TRUSTSTORE_DIR}/${env.SSO_TRUSTSTORE}")
+
+# #/subsystem=keycloak-server/spi=truststore/provider=file/:map-put(name=properties,key=password, value="${env.SSO_TRUSTSTORE_PASSWORD}")
+
+# #/subsystem=keycloak-server/spi=truststore/provider=file/:map-put(name=properties,key=hostname-verification-policy, value="WILDCARD")
+
+# #/subsystem=keycloak-server/spi=truststore/provider=file/:map-put(name=properties,key=disabled, value="false")
+
+# run-batch
+
+# quit
