@@ -99,7 +99,7 @@ keycloak_default_jdbc:
 oracle_xa_driver: oracle.jdbc.xa.client.OracleXADataSource
 oracle_eap_module: com.oracle
 oracle_driver_name: oracle
-oracle_username: rhssolab
-oracle_password: galicia2019
-oracle_jdbc_url: jdbc:oracle:thin:@192.168.1.37:1521/XE
+oracle_username: sys
+oracle_password: redhat01
+oracle_jdbc_url: jdbc:oracle:thin:@95.216.145.227:1521/XE
 oracle_jar: "{{ keycloak_jboss_home }}/extensions/ojdbc7.jar"

@@ -2,9 +2,9 @@
 - name: Playbook for Keycloak Hosts
   hosts: keycloak
   vars:
-    keycloak_admin_password: "redhat01!"
-    rhn_username: 'ilago@redhat.com'
-    rhn_password: 'Nananacho5266!'
+    keycloak_admin_password: "redhat01"
+    rhn_username: 'rhn-gps-splatas'
+    rhn_password: 'CHANGE-ME'
     keycloak_offline_install: True
     keycloak_rhsso_enable: True
     #keycloak_rhsso_download_url: "https://<internal-nexus.private.net>/<path>/<to>/rh-sso-x.y.z-server-dist.zip"
