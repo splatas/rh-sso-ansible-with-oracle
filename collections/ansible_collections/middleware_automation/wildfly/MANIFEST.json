@@ -1,0 +1,39 @@
+{
+ "collection_info": {
+  "namespace": "middleware_automation",
+  "name": "wildfly",
+  "version": "1.0.2",
+  "authors": [
+   "Romain Pelisse <belaran@redhat.com>",
+   "Andrew Block <ablock@redhat.com>",
+   "Harsha Cherukuri <hcheruku@redhat.com>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "java",
+   "jboss",
+   "wildfly",
+   "cli",
+   "server",
+   "application"
+  ],
+  "description": "Enable Ansible to provisioning JBoss EAP or Wildfly instances.",
+  "license": [],
+  "license_file": "LICENSE",
+  "dependencies": {
+   "middleware_automation.redhat_csp_download": ">=1.1.2"
+  },
+  "repository": "https://github.com/ansible-middleware/wildfly",
+  "documentation": "https://ansible-middleware.github.io/wildfly",
+  "homepage": "https://github.com/ansible-middleware/wildfly",
+  "issues": "https://github.com/ansible-middleware/wildfly/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "824a4cf1a3315e0266ad1eb1159f4dda9473e31d0c999fb1ad5d61c605276ebd",
+  "format": 1
+ },
+ "format": 1
+}
