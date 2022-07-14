@@ -4,8 +4,8 @@
 
 # Install
 
-    $ rpm -ivh oracle-instantclient11.2-basic-11.2.0.2.0.x86_64.rpm
-    $ rpm -ivh oracle-instantclient11.2-sqlplus-11.2.0.2.0.x86_64.rpm
+    $ rpm -ivh oracle-instantclient-basic-21.6.0.0.0-1.el8.x86_64.rpm
+    $ rpm -ivh oracle-instantclient-sqlplus-21.6.0.0.0-1.el8.x86_64.rpm
 
 # Set environment variables in your ~/.bash_profile
 
