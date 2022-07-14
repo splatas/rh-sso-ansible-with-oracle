@@ -23,6 +23,7 @@ Now you're ready to use SQL*Plus and connect your server. Try with Easy Connect 
 
     $ sqlplus USER_NAME@"HOST:PORT/SERVICE_NAME"
 or
+    
     $ sqlplus "username/pass@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.2.1)(PORT=1521))(CONNECT_DATA=(SID=YOURSID)))"
 
 
