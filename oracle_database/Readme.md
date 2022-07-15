@@ -1,3 +1,8 @@
+# To run an Oracle Database with docker/podman, see this link:
+
+    https://github.com/splatas/oracle-db-podman/blob/main/OracleDatabase/SingleInstance/README.md
+
+
 # Download tools on your server
     ./oracle-instantclient-basic-21.6.0.0.0-1.el8.x86_64.rpm
     ./oracle-instantclient-sqlplus-21.6.0.0.0-1.el8.x86_64.rpm
